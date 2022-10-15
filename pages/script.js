@@ -2,13 +2,18 @@ function add() {
 
     let mKwh = document.querySelector("#mediakwh").value;
 
-    let res = document.querySelector(".resKwh");
+    let res = document.querySelector("#resKwh").innerHTML;
 
-    for (let i = 0; i <= mKwh.length; i++) {
-        
-        res.innerHTML = mKwh;     
-        
-    }
+    let kwh = [];
 
+    kwh.push(mKwh);
+
+    res += `<li>${kwh}</li>`;
+    
+    document.querySelector("#resKwh").innerHTML = res;
+
+    document.querySelector("#mediakwh").value = null;
+
+    document.querySelector("#mediakwh").value = focus();
 
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos com Google Charts </title>
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <style>
+        body {
+            
+            margin: 100px;
+            padding: 0;
+            color: #0f0101;
+            background-color: #f5ebcb;
+        }
+        .main {
+            display: flex;
+
+        }
+        .radio {
+            display: flex;
+        }
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-right: 100px;
+        }
+
+        input {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+        }
+    </style>
+    <!--Div that will hold the pie chart-->
+    <div class="radio">
+        <label for="radio"></label>
+        <input type="radio" name="" id="radio">
+        <label for="radio"></label>
+        <input type="radio" name="" id="radio">
+    </div>
+    <div class="main">
+        
+        <div class="inputs">
+            <label for="mediakwh">Histórico de Faturamento em kwh:</label>
+            <small>(últimos 12 meses)</small>
+            <input type="number" name="" id="mediakwh">
+            <input type="button" value="Adicionar" onclick="add()">
+            <div class="resKwh"></div>
+        </div>
+        <div class="inputs">
+            <label for="radiacaoSolar">Consumo médio de kwh:</label>
+            <input type="number" name="" id="radiacaoSolar">
+            <label for="radiacaoSolar">Taxa de irradiação solar no plano inclinado:</label>
+            <input type="number" name="" id="radiacaoSolar">
+        </div>
+        <div class="chart">
+            <div id="chart_div"></div>
+        </div>
+    </div>
+    
+    
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./chart.js"></script>
+
+</body>
+</html>

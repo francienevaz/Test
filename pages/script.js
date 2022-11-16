@@ -1,16 +1,18 @@
-
+let kwh = [];
 
 function add() {
 
     let mKwh = document.querySelector("#mediakwh").value;
 
-    let res = document.querySelector("#resKwh").innerHTML;
+    let res = document.querySelector("#resKwh").innerHTML;    
 
-    let kwh = [];
+    if (mKwh !== ''){    
 
     kwh.push(mKwh);
 
     res += `<li>${kwh}</li>`;
+
+    console.log(kwh)
     
     document.querySelector("#resKwh").innerHTML = res;
 
@@ -18,6 +20,7 @@ function add() {
 
     document.querySelector("#mediakwh").value = focus();
 
+    }   
 }
 
 function handleKeyUp (event) {

@@ -1,3 +1,5 @@
+
+
 function add() {
 
     let mKwh = document.querySelector("#mediakwh").value;
@@ -17,3 +19,11 @@ function add() {
     document.querySelector("#mediakwh").value = focus();
 
 }
+
+function handleKeyUp (event) {
+    if (event.keyCode === 13) {
+        add()
+    }
+}
+
+document.addEventListener('keyup', handleKeyUp);

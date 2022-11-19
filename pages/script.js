@@ -8,9 +8,13 @@ function add() {
 
     if (mKwh !== ''){    
 
-    kwh.push(mKwh);
+    console.log(kwh.push(mKwh));    
 
-    res += `<li>${kwh}</li>`;
+    for (let i = 0; i < kwh.length; i++) {
+
+        res += `<li>${kwh.pop()}</li>`;
+
+    }
 
     console.log(kwh)
     
@@ -18,7 +22,7 @@ function add() {
 
     document.querySelector("#mediakwh").value = null;
 
-    document.querySelector("#mediakwh").value = focus();
+    // document.querySelector("#mediakwh").value = focus();
 
     }   
 }

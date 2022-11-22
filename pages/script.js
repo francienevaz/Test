@@ -21,7 +21,7 @@ function add() {
     document.querySelector("#resKwh").innerHTML = res;
 
     document.querySelector("#mediakwh").value = null;
-
+ 
     // document.querySelector("#mediakwh").value = focus();
 
     }   

@@ -6,17 +6,11 @@ function add() {
 
     let res = document.querySelector("#resKwh").innerHTML;    
 
-    if (mKwh !== ''){    
+    if (mKwh !== '' && kwh.length <= 11){    
 
-    console.log(kwh.push(mKwh));    
-
-    for (let i = 0; i < kwh.length; i++) {
-
-        res += `<li>${kwh.pop()}</li>`;
-
-    }
-
-    console.log(kwh)
+    kwh.push(mKwh);
+  
+    res += `<li>${kwh}</li>`;
     
     document.querySelector("#resKwh").innerHTML = res;
 

@@ -1,0 +1,26 @@
+A função map é um método de arrays em JavaScript que permite iterar sobre um array e modificar seus elementos usando uma função de callback. A função de callback será executada em cada um dos elementos do array. Por exemplo, vamos supor que você tenha o array a seguir:
+
+let arr = [3, 4, 5, 6];
+Copiar
+Agora, imagine que você deseja multiplicar cada um dos elementos do array por 3. Você poderia usar um laço for, da seguinte maneira:
+
+let arr = [3, 4, 5, 6];
+for (let i = 0; i < arr.length; i++){
+    arr[i] = arr[i] * 3;
+}
+console.log(arr); // [9, 12, 15, 18]
+Copiar
+No entanto, você pode usar o método Array.map() para obter o mesmo resultado. Vemos aqui um exemplo:
+
+let arr = [3, 4, 5, 6];
+let modifiedArr = arr.map(function(element){
+    return element *3;
+});
+console.log(modifiedArr); // [9, 12, 15, 18]
+Copiar
+O método Array.map() normalmente é usado para aplicar algumas alterações aos elementos do array
+--------------------------------------------------------------------------------------------------------------------
+A função map() em JavaScript é usada para iterar sobre um array e executar uma função de callback em cada elemento do array. A função de callback pode receber até três parâmetros: o valor atual do elemento, o índice do elemento e o próprio array. O primeiro parâmetro é obrigatório e representa o próprio item da iteração atual. O segundo parâmetro é opcional e representa o índice do item da iteração atual. O terceiro parâmetro também é opcional e representa o próprio array ao qual os itens pertencem1.
+
+A função `map()` em JavaScript é usada para iterar sobre um array e executar uma função de callback em cada elemento do array. A função de callback pode receber até três parâmetros: o valor atual do elemento, o índice do elemento e o próprio array. O primeiro parâmetro é obrigatório e representa o próprio item da iteração atual. O segundo parâmetro é opcional e representa o índice do item da iteração atual. O terceiro parâmetro também é opcional e representa o próprio array ao qual os itens pertencem.
+

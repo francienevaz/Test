@@ -6,17 +6,22 @@ function add() {
 
     let res = document.querySelector("#resKwh").innerHTML;    
 
-    if (mKwh !== '' && kwh.length <= 11){    
+    if (mKwh !== '' && kwh.length < 11){    
 
     kwh.push(mKwh);
-  
-    res += `<li>${kwh}</li>`;
-    
-    document.querySelector("#resKwh").innerHTML = res;
 
-    document.querySelector("#mediakwh").value = null;
+    for (let i = 0; i <= kwh.length; i++) {
+
+        res = `<li>${kwh}</li>`;
+    
+        document.querySelector("#resKwh").innerHTML = res;
+
+        mKwh = null;
+    }
+  
+    
  
-    // document.querySelector("#mediakwh").value = focus();
+    //mKwh = focus();
 
     }   
 }

@@ -1,81 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-         @import url(https://fonts.googleapis.com/css?family=Montserrat:700);
-        
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            background-color: indianred;
-            margin: 0px;
-            width:100%; 
-            height:100vh;
-            overflow:hidden;
-            background:hsla(0, 5%, 5%, 1);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-image: linear-gradient(to right top, hsla(0, 5%,15%, 0.5), hsla(0, 5%, 5%,1));
-            
-        }
-
-        svg{
-             width:100%;
-        }
-       
-        .cep {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #cep {
-            padding: 10px;            
-            width: 200px;
-            height: 30px;
-            border-radius: 20px;
-            border: none;
-        }
-        #cep:focus {
-            background-color: rgb(252, 255, 68);
-        }
-
-        .btn {
-            width: 200px;
-            height: 100px;
-            border-radius: 20px;
-            color: firebrick
-            ;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculadora Energia Solar</title>
 </head>
+	<style>
+	* {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-family: "Poppins", sans-serif;
+	box-sizing: border-box;
+}
+	body {
+	background-color: #222;
+	height: 100%;
+}
+	.container {
+	display: flex;	
+	align-items: center;
+	justify-content: center;	
+}
+	.main {
+	margin-top: 100px; 
+	border: 1px solid red;
+}	
+	</style>
 <body>
-    <svg width="100%" height="100%" viewBox="10-100 1100 550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
- <path id="path">
-    <animate attributeName="d" from="m0,110 h0" to="m20,110 h1100" dur="15s" begin="0s" repeatCount="indefinite"/>
-  </path>
-  <text font-size="16" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)'>
-    <textPath xlink:href="#path">Reduza a sua conta de Luz em até 95%!
-        A instalação do sistema é fácil e rápida, além de ser uma energia limpa 
-        e sustentável...
-    </textPath>
-  </text>
-    </svg>
-    <div id="btn">
-    </div>
-    <div class="cep">
-       <input type="number" name="cep" id="cep" placeholder="Digite o seu Cep"> 
-    </div>
+	
+<div class="container">
+	<div class="main">
+		<input type="number" placeholder="Digite o cep" id="cepInput">
+		<button type="button" class="btn">ok</button>
+	</div>
+	<div display="none">
+		<p>latitude: </p>
+		<p>longitude: </p>
+		<p>cálculo no plano inclinado: </p>
+		<p>média do consumo anual: </p>
+		<p>média do consumo mensal: </p>
+		<p>média do consumo diário: </p>
+		<p>kw pico: </p>
+		<p>número de placas necessárias: </p>
+		<p>Potêncial de Energia Solar gerada: </p>
 
-    <script src="/buscaCep.js"></script>
-    <script src="./scripts.js"></script>
-    
+	</div>
+</div>
+	<script>
+		const cepInput = document.querySelector("#cepInput");
+		const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", () => {
+	console.log(cepInput.value)
+})
+
+	//const btc = document.querySelector("#bitcoin");
+	//const eth = document.querySelector("#ethereum");
+	//const dog = document.querySelector("#dogecoin");
+
+	//const settings = {
+    	//"async": true,
+    	//"scrossDomain": true,
+    	//"url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum	//%2Cdogecoin&vs_currencies=usd%2Cbrl",
+    	//"method": "GET",
+    	//"headers": {}
+	}
+
+	//$.ajax(settings).done(function(response){
+    	//btc.innerHTML = response.bitcoin.usd;
+    	//eth.innerHTML = response.ethereum.usd;
+    	//dog.innerHTML = response.dogecoin.usd;
+	//})
+
+	</script>
 </body>
 </html>

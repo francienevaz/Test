@@ -55,6 +55,12 @@
 btn.addEventListener("click", () => {
 	console.log(cepInput.value)
 })
+	const key = ""
+	async function takeLatitudeLongitude() {
+	 const response = await fetch("https://...${key}");
+	 const  latLong = response.json();
+	console.log(latLong);
+}
 
 	//const btc = document.querySelector("#bitcoin");
 	//const eth = document.querySelector("#ethereum");

@@ -35,7 +35,7 @@
 		<input type="number" placeholder="Digite o cep" id="cepInput">
 		<button type="button" class="btn">ok</button>
 	</div>
-	<div display="none">
+	<div style="display: none;">
 		<p>latitude: </p>
 		<p>longitude: </p>
 		<p>cálculo no plano inclinado: </p>
@@ -52,15 +52,19 @@
 		const cepInput = document.querySelector("#cepInput");
 		const btn = document.querySelector(".btn");
 
-btn.addEventListener("click", () => {
-	console.log(cepInput.value)
-})
-	const key = ""
-	async function takeLatitudeLongitude() {
-	 const response = await fetch("https://...${key}");
-	 const  latLong = response.json();
-	console.log(latLong);
-}
+		btn.addEventListener("click", () => {
+			console.log(cepInput.value)
+		})
+
+
+		const key = ""
+		async function takeLatitudeLongitude() {
+		const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${key}&fields=geo`);
+		const  latLong = response.json();
+		return console.log(latLong);
+	}
+
+	takeLatitudeLongitude()
 
 	//const btc = document.querySelector("#bitcoin");
 	//const eth = document.querySelector("#ethereum");
@@ -72,7 +76,7 @@ btn.addEventListener("click", () => {
     	//"url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum	//%2Cdogecoin&vs_currencies=usd%2Cbrl",
     	//"method": "GET",
     	//"headers": {}
-	}
+	//}
 
 	//$.ajax(settings).done(function(response){
     	//btc.innerHTML = response.bitcoin.usd;

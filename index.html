@@ -49,13 +49,13 @@
 	</div>
 </div>
 	<script>
-		const cepInput = document.querySelector("#cepInput");
+		const cepInput = document.querySelector("#cepInput").value;
 		const btn = document.querySelector(".btn");
 		const key = "c50d7036d34b4c55ae2ddadfe2b15eb0"
 
 		const fetchApi = async (latitude, longitude, zipcode) => {
 			const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${key}&fields=${latitude}&fields=${longitude}&fields=${zipcode}`);
-			const  data = await response.json();
+			const data = await response.json();
 
 			if (data.status == 200) {
 				return data;
@@ -67,16 +67,16 @@
 			const data = await fetchApi(latitude, longitude, zipcode); 
 			const datas = [];
 
-			if(cepInput.value == zipcode.zipcode){
+			if(cepInput == data.zipcode){
 				
-				datas.push(latitude[latitude],longitude[longitude])
-				console.log(datas);
+				datas.push(data[latitude],data[longitude])
+				return console.log(datas);
 			}
 		}
 
 
 		btn.addEventListener("click", () => {
-			takeCep()
+			takeCep(cepInput)
 		})
 
 	</script>

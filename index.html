@@ -51,38 +51,33 @@
 	<script>
 		const cepInput = document.querySelector("#cepInput");
 		const btn = document.querySelector(".btn");
+		const key = "c50d7036d34b4c55ae2ddadfe2b15eb0"
+
+		const fetchApi = async (latitude, longitude, zipcode) => {
+			const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${key}&fields=${latitude}&fields=${longitude}&fields=${zipcode}`);
+			const  data = await response.json();
+
+			if (data.status == 200) {
+				return data;
+			}
+			
+		}
+
+		const takeCep = async (latitude, longitude, zipcode) => {
+			const data = await fetchApi(latitude, longitude, zipcode); 
+			const datas = [];
+
+			if(cepInput.value == zipcode.zipcode){
+				
+				datas.push(latitude[latitude],longitude[longitude])
+				console.log(datas);
+			}
+		}
+
 
 		btn.addEventListener("click", () => {
-			console.log(cepInput.value)
+			takeCep()
 		})
-
-
-		const key = ""
-		async function takeLatitudeLongitude() {
-		const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${key}&fields=geo`);
-		const  latLong = response.json();
-		return console.log(latLong);
-	}
-
-	takeLatitudeLongitude()
-
-	//const btc = document.querySelector("#bitcoin");
-	//const eth = document.querySelector("#ethereum");
-	//const dog = document.querySelector("#dogecoin");
-
-	//const settings = {
-    	//"async": true,
-    	//"scrossDomain": true,
-    	//"url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum	//%2Cdogecoin&vs_currencies=usd%2Cbrl",
-    	//"method": "GET",
-    	//"headers": {}
-	//}
-
-	//$.ajax(settings).done(function(response){
-    	//btc.innerHTML = response.bitcoin.usd;
-    	//eth.innerHTML = response.ethereum.usd;
-    	//dog.innerHTML = response.dogecoin.usd;
-	//})
 
 	</script>
 </body>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculadora Energia Solar</title>
+</head>
+	<style>
+
+	:root {
+
+	--cor-azul: #229b77;
+	--cor-hover: #fff; 
+	}
+
+		* {
+		margin: 0;
+		padding: 0;
+		font-size: 20px;
+		font-family: "Poppins", sans-serif;
+		box-sizing: border-box;
+	}
+		body {
+		background-color: #222;
+		height: 100%;
+	}
+		.container {
+		display: flex;	
+		align-items: center;
+		justify-content: center;	
+	}
+		.main {
+		margin-top: 100px; 
+	}	
+
+	.main input {
+		padding: 10px;
+		margin-right: 20px;
+		font-size: 30px;
+		outline: none;
+		border: none;
+		color: #fff;
+		border-bottom: 2px solid #229b77;
+		background: transparent;
+	}
+
+	.btn {
+
+	padding:0.2em 1em;
+	border-radius:50px;
+	display:inline-block;
+
+	}
+
+	.btn-neon {
+	border:4px solid var(--cor-azul);
+	position: relative;
+	text-transform: capitalize;
+	text-decoration:none;
+	color: var(--cor-azul);
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 2em;
+	font-family: 'open_sansregular';
+	transition:0.4s;
+	text-shadow: 0 0 0.125em rgba(0, 0, 0, 0.5), 0 0 0.25em currentColor;
+	box-shadow: inset 0 0 0.5em 0 var(--cor-azul), 0 0 0.5em 0 var(--cor-azul);
+	}
+
+	.btn-neon:hover {
+	color: var(--cor-hover);
+	border:4px solid var(--cor-hover);
+	transition:0.5s;
+	text-shadow: none;
+	}
+
+	.btn-neon:hover:after {
+	opacity: 1;
+	}
+
+	.btn-neon:hover:before {
+	opacity: 1;
+	}
+
+	.btn-neon:before, .btn-neon:after {
+	content: "";
+	position: absolute;
+	transition: opacity 100ms linear;
+	background-color: var(--cor-azul);
+	}
+
+	.btn-neon:before {
+	top: 120%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: perspective(1em) rotateX(45deg) scale(1, 0.35);
+	filter: blur(1em);
+	opacity: 0.5;
+	}
+
+	.btn-neon:after {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	box-shadow: 0 0 0.98em 0.5em var(--cor-azul), 0 0 0.98em 1em var(--cor-azul);
+	opacity: 0;
+	}
+	</style>
+<body>
+	
+<div class="container">
+	<div class="main">
+		<input type="text" placeholder="Digite o cep" id="cepInput">
+		<button type="button" class="btn btn-neon">ok</button>
+	</div>
+	<div style="display: none;">
+		<p>latitude: </p>
+		<p>longitude: </p>
+		<p>cálculo no plano inclinado: </p>
+		<p>média do consumo anual: </p>
+		<p>média do consumo mensal: </p>
+		<p>média do consumo diário: </p>
+		<p>kw pico: </p>
+		<p>número de placas necessárias: </p>
+		<p>Potêncial de Energia Solar gerada: </p>
+
+	</div>
+</div>
+	<script src="./assets/index.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+	* { 
+	      margin: 0;
+	      padding: 0;
+	      font-family: "Poppins", sans-serif;
+	      box-sizing: border-box; 
+	  }
+	body {
+	background: rgb(31 78 86 / 0.9);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	}
+	canvas {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(108 198 128 / 0.5);
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	backdrop-filter: blur(20px);
+	}
+    </style>
+
+</head>
+<body>
+	<canvas height="600" width="600" ></canvas>
+    
+    <script>
+	const canvas = document.querySelector("canvas");
+	const ctx = canvas.getContext("2d");
+	
+function roundedRect(ctx,x,y,width,height,radius){
+  ctx.beginPath();
+  ctx.moveTo(x,y+radius);
+  ctx.lineTo(x,y+height-radius);
+  ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
+  ctx.lineTo(x+width-radius,y+height);
+  ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
+  ctx.lineTo(x+width,y+radius);
+  ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
+  ctx.lineTo(x+radius,y);
+  ctx.quadraticCurveTo(x,y,x,y+radius);
+  ctx.fill();
+}
+roundedRect(ctx,300,300,50,50,25)
+roundedRect(ctx,305,260,40,40,20)
+roundedRect(ctx,305,220,40,40,20)
+roundedRect(ctx,305,180,40,40,20)
+
+  </script>
+	
+</body>
+</html>

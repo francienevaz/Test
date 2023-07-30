@@ -7,83 +7,128 @@
     <title>Searching... </title>
     <style>
 	* { 
-	      margin: 0;
-	      padding: 0;
-	      font-family: "Poppins", sans-serif;
-	      box-sizing: border-box; 
+		margin: 0;
+		padding: 0;
+		font-family: "Poppins", sans-serif;
+		box-sizing: border-box; 
 	  }
 	body { 
-	      background: #222;
-	      height: 100%;	      
+		background: #222;
+		height: 100%;	      
 	  }
 	.container {
-	      display: flex	
+		display: flex	
 	}
 	.card { 
-	      width: 95%;
-	      max-width: 500vh;
-	      background: linear-gradient(135deg, #091b20, #2d869f);
-	      color: #fff;
-	      margin: 100px auto 0;
-	      border-radius: 20px;
-	      padding: 40px 35px;
+		
+		width: 90%;
+		max-width: 500vw;
+		background: linear-gradient(135deg, #091b20, #2d869f);
+		color: #fff;
+		margin: 100px auto 0;
+		border-radius: 20px;
+		padding: 40px 35px;
 	  }
 
-	.search, .imgs {
-	      display: flex;
-	      align-items: center;
-	      justify-content: center;
-	      width: 100%;
-	      padding-bottom: 20px;
+	.search {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding-bottom: 20px;
 	}	
 	.search input { 
-	      border: 0;
-	      outline: 0;
-	      background: #ebfffc;
-	      color: #555;
-	      padding: 10px 25px;
-	      height: 60px;
-	      max-width: 40%;
-	      border-radius: 30px;
-	      flex: 1;
-	      margin-right: 16px;
-	      font-size: 18px;
+		border: 0;
+		outline: 0;
+		background: #ebfffc;
+		color: #555;
+		padding: 10px 25px;
+		height: 60px;
+		max-width: 40%;
+		border-radius: 30px;
+		flex: 1;
+		margin-right: 16px;
+		font-size: 18px;
 
 	  }
 	.btn {
 	   display: flex;
 	}
 	button {
-	      padding: 15px;
-	      border: 0;
-	      outline: 0;
-	      background: #ebfffc;
-	      border-radius: 50px;
-	      height: 50px;
-	      cursor: pointer;
-	      margin: 10px;
+		padding: 15px;
+		border: 0;
+		outline: 0;
+		background: #ebfffc;
+		border-radius: 50px;
+		height: 50px;
+		cursor: pointer;
+		margin: 10px;
 	}
 	
-	.registration {
-	margin-top: 50px;
+	.registration form h1{
+		margin-bottom: 50px;
 	}
 	
 	.input-box {
-	   margin-top: 50px;
-	   display: flex;
-	   flex-direction: column;
-	   align-items: center;
-	   justify-content: center;
-	
+		position: relative;
+		
+	}
+
+	.input-box label{
+		position: absolute;
+		top: 30%;
+		left: 5px;
+		transform: translateY(-30%);
+		font-size: 1rem;
+		color: #ffffff;
+		font-weight: 500;
+		pointer-events: none;
+		transition: .5s;
 	}
 
 	.input-box input {
-	  font-size: 20px;
-	  height: 60px;
-	  width: 50%;
-	  border-radius: 10px;
-	  padding: 20px;
+		color: #fff;
+		margin: 20px;
+		background: transparent;
+		font-size: 20px;
+		height: 60px;
+		width: 100%;
+		padding: 20px;
+		border: none;
+		outline: none;
+		border-bottom: 2px solid #05cef1;
 	}
+
+	.input-box input:focus~label,
+	.input-box input:valid~label {
+		top: -5px;
+		color: #05cef1;
+		transition: 500ms;
+	}
+
+	.checkbox {
+		display: flex;
+		margin: 20px;
+		padding: 20px;
+	}
+
+	.input-box input[type="checkbox"] {
+		
+		border-radius: 50%;
+		height: 15px;
+		width: 15px;
+		margin: 20px;
+		padding: 20px;
+	}
+
+	.input-box .icon {
+		position: absolute;
+		right: 10px;
+		font-size: 1.2em;
+		color: #162938;
+		line-height: 57px;
+	}
+
     </style>
      
 </head>
@@ -97,26 +142,44 @@
 		</div>
 		<div class="registration">
 			<form action="#" >
-               			 <h1>Cadastro da empresa</h1> 
-                 			<div class="input-box">
-                    			<span class="icon"><ion-icon name="person"></ion-icon></span>
-                    			<input type="text" required>
-                    			<label>Nome da empresa</label>
-				<span class="icon"><ion-icon name="person"></ion-icon></span>
-				<input type="text" required>
-                    			<label>Representante</label>
-				<input  type="number"required>
-                    			<label>CNPJ</label>
-				<input  type="text"required>
-                    			<label>Status</label>
-				<div class="btn">
-					<button >Adicionar</button>
-					<button >Cancelar</button>
+               	<h1>Cadastro da empresa</h1> 
+                <div class="input-box">
+                	<span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input name="empresa" type="text" required>
+                    <label for="empresa">Nome da empresa</label>
+					
 				</div>
-                			</div>           
-            			</form>
+				<div class="input-box">
+					<span class="icon"><ion-icon name="person"></ion-icon></span>
+					<input name="representante" type="text" required>                    
+					<label for="representante">Representante</label>
+				</div>
+				<div class="input-box">
+					<input name="CNPJ" type="number"required>
+                    <label for="CNPJ">CNPJ</label>
+				</div>
+
+				<div class="checkbox">
+					<label>Status</label>
+					<div class="input-box toggle">
+						<input  type="checkbox" required>
+						<label> Ativa</label>
+					</div>
+					<div class="input-box">
+						<input  type="checkbox" required>
+						<label> Inativa</label>
+					</div> 
+				</div>
+					
+				                   
+					<div class="btn">
+						<button >Adicionar</button>
+						<button >Cancelar</button>
+					</div>
+                </div>           
+            </form>
 		</div>
-		<div class="companies">
+		<div class="companies" style="display: none;">
 			<p>Nome da empresa:</p>
 			<p>Representante:</p>
 			<p>CNPJ:</p>

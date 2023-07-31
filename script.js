@@ -1,61 +1,80 @@
-const main = document.querySelector(".main");
-const loginLink = document.querySelector(".login-link");
-const registerLink = document.querySelector(".register-link");
-const btnLogin = document.querySelector(".btn-login");
-const iconClose = document.querySelector(".icon-close");
+const card = document.querySelector('.card');
+const companies = document.querySelector('.companies');
+const btnAdd = document.getElementById('add');
+const btnCancel = document.getElementById('cancelar');
+const btnAddCompany = document.getElementById('addCompany');
 
-// btn events
-registerLink.addEventListener("click", () => {
-
-          main.classList.add("active");
-});
-
-loginLink.addEventListener("click", () => {
-
-          main.classList.remove("active");
-});
-
-btnLogin.addEventListener("click", () => {
-
-          main.classList.add("active-popup");
-});
-
-iconClose.addEventListener("click", () => {
-
-          main.classList.remove("active-popup");
-});
-
-// field validation
-
+const inputCompanyName = document.getElementById('company');
+const inputProprietaryName = document.getElementById('proprietary');
+const inputCNPJ = document.getElementById('cnpj');
 const inputs = document.querySelector('.inputs');
-const inputEmail = document.querySelector("#email");
-//const msgHidden = document.querySelector(".hidden");
-const msgCheckValue = document.querySelector(".msg");
-const btn = document.querySelector(".btn");
 
-function checkInput() {
-	if (inputEmail.value == " ") {
-	msgCheckValue.classList.remove("hidden");
-	msg.classList.add("msg");
+const statusActive = document.getElementById("ativa");
+const statusInative = document.getElementById("inativa");
+let statusCompany = "";
+
+const p = document.querySelectorAll('.companies p');
+
+const messageFill = document.querySelector('.input-box span');
+
+const companyData = {};
+const datas = [];
+
+    function checkClicked () {
+        if(statusActive.checked) {
+            
+            statusInative.disabled = true;
+            statusCompany = "Ativa";
+        } else if (statusInative.checked) {
+            statusActive.disabled= true;
+            statusCompany = "Inativa";
+        } else {
+            statusCompany = "";
+            statusActive.disabled = false;
+            statusInative.disabled =false;
+        }
+    }
+
+    const addCompany = (company, proprietary, cnpj, status) => {
+           
+        	companyData['name'] = company;
+        	companyData['representant'] =  proprietary;
+        	companyData['cnpj']=  cnpj;
+        	companyData['status'] =  status;
+
+        	card.style.display = "none";
+        	companies.style.display = "block";
+
+	localStorage.setItem('empresa', companyData.name);
+	localStorage.setItem('proprietário', companyData.representant);
+	localStorage.setItem('cnpj', companyData.cnpj);
+	localStorage.setItem('status', companyData.status);	
 	
-} else {
-	msgCheckValue.classList.remove("msg");
-	msgCheckValue.classList.add("hidden");
-	
-	}
-}
+	datas.push({
+		name: localStorage.getItem('empresa'),
+        		representant: localStorage.getItem('proprietário'),
+        		cnpj: localStorage.getItem('cnpj'),
+        		status: localStorage.getItem('status')
+	})
+        	
 
-if (inputs.checkValidity()) {
-	
-  const valor = inputs.value;
-  console.log(valor + "check validity");
-} else {
-  const mensagemDeErro = inputs.validationMessage;
-  console.log(mensagemDeErro + "Error");
-}
+ }}
 
-btn.addEventListener("submit", (event) => {
-	event.preventDefault();
-})
+    inputs.addEventListener("blur", () => {
+        messageFill.classList.add('hidden');
+    });    
+    
+    btnAddCompany.addEventListener("click", (event) => {
+        event.preventDefault();
+        addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+    });
+    
 
-checkInput()
+    btnAdd.addEventListener("click", () => {
+        card.style="display: block";
+    })
+    btnCancel.addEventListener('click',() =>{
+        location.reload();
+    })
+
+console.log(datas)

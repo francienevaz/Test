@@ -57,16 +57,15 @@ const messageFill = document.querySelector('.input-box span');
         p[2].innerHTML = `<p>CNPJ: ${companyData.cnpj}</p>`
         p[3].innerHTML = `<p>Status: ${companyData.status}</p>`
 
-        console.log(companyData)
         getData();
     }
 
     inputs.addEventListener("blur", () => {
         messageFill.classList.add('hidden');
-    });
+    });    
     
-    
-    btnAddCompany.addEventListener("click", () => {
+    btnAddCompany.addEventListener("click", (event) => {
+        event.preventDefault();
         addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
     });
     

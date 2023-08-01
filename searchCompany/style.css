@@ -27,11 +27,15 @@
 	  }
 
 	.search {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		padding-bottom: 20px;
+		position: relative;
+		text-align: center;	
+		width: 100%;	
+	}
+	#btnFilter {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		
 	}	
 	.search input { 
 		border: 0;
@@ -40,10 +44,9 @@
 		color: #555;
 		padding: 10px 25px;
 		height: 60px;
-		max-width: 40%;
+		max-width: 50%;
 		border-radius: 30px;
-		flex: 1;
-		margin-right: 16px;
+		flex: 1; 
 		font-size: 18px;
 
 	  }
@@ -102,6 +105,12 @@
 		color: #05cef1;
 		transition: 500ms;
 	}
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+ 		 -webkit-appearance: none;
+  		margin: 0;
+	}
+
 
 	.checkbox {
 		display: flex;
@@ -127,10 +136,10 @@
 		display: none;
 	}
 
-    .input-box > span {
-        font-family: "Poppins", sans-serif;
-        font-weight: 200;
-        padding-left: 20px;
-        font-size: 15px;
-        color: red;
-    }
+   	.input-box > span {
+		font-family: "Poppins", sans-serif;
+		font-weight: 200;
+		padding-left: 20px;
+		font-size: 15px;
+		color: red;
+   	 }

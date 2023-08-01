@@ -11,8 +11,8 @@
 <div class="container">
 	<div class="search">
 		<input type="text" placeholder="Search..." spellcheck="false">
-		<button class="btn" onClick="companyFilter()"><img>🔎</img></button>
-		<button class="btn" id="add"><img> Adicionar ➕</img></button>
+		<button id="btnFilter" class="btn" onClick="companyFilter()"><img>🔎</img></button>
+		<button id="add"><img> Adicionar ➕</img></button>
 	</div>
 	<div class="card" style="display: none;">
 		<div class="registration">
@@ -32,8 +32,8 @@
 					<span class="hidden">Please fill out this field!</span>
 				</div>
 				<div class="input-box">
-					<input id="cnpj" class="inputs" name="CNPJ" type="number"required>
-                    <label for="CNPJ">CNPJ</label>
+					<input id="cnpj" class="inputs" name="CNPJ" type="number" placeholder="00.000.000/0000-00" required>
+                    				<label for="CNPJ">CNPJ</label>
 					<span class="hidden">Please fill out this field!</span>
 				</div>
 				<label>Status</label>

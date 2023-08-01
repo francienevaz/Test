@@ -17,6 +17,9 @@ const p = document.querySelectorAll('.companies p');
 
 const messageFill = document.querySelector('.input-box span');
 
+const companyData = {};
+const datas = [];
+
     function checkClicked () {
         if(statusActive.checked) {
             
@@ -32,33 +35,28 @@ const messageFill = document.querySelector('.input-box span');
         }
     }
 
-    function getData () {
-        localStorage.setItem('empresa', inputCompanyName.value);
-        localStorage.setItem('proprietário', inputProprietaryName.value);
-        localStorage.setItem('cnpj', inputCNPJ.value);
-        localStorage.setItem('status', statusCompany);
-    }
-
-
-    const addCompany =  async (company, proprietary, cnpj, status) => {
-
-        
-        let companyData = {};
-        companyData['name'] = await company;
-        companyData['representant'] = await proprietary;
-        companyData['cnpj']= await cnpj;
-        companyData['status'] = await status;
+    const addCompany = (company, proprietary, cnpj, status) => {
+           
+        companyData['name'] = company;
+        companyData['representant'] =  proprietary;
+        companyData['cnpj']=  cnpj;
+        companyData['status'] =  status;
 
         card.style.display = "none";
         companies.style.display = "block";
 
-        p[0].innerHTML = `<p>Nome da Empresa: ${companyData.name}</p>`
-        p[1].innerHTML = `<p>Representante: ${companyData.representant}</p>`
-        p[2].innerHTML = `<p>CNPJ: ${companyData.cnpj}</p>`
-        p[3].innerHTML = `<p>Status: ${companyData.status}</p>`
+        localStorage.setItem('empresa', companyData.name);
+        localStorage.setItem('proprietário', companyData.representant);
+        localStorage.setItem('cnpj', companyData.cnpj);
+        localStorage.setItem('status', companyData.status);	
 
-        getData();
-    }
+        datas.push({
+            name: localStorage.getItem('empresa'),
+                    representant: localStorage.getItem('proprietário'),
+                    cnpj: localStorage.getItem('cnpj'),
+                    status: localStorage.getItem('status')
+	})
+ }
 
     inputs.addEventListener("blur", () => {
         messageFill.classList.add('hidden');
@@ -73,6 +71,8 @@ const messageFill = document.querySelector('.input-box span');
     btnAdd.addEventListener("click", () => {
         card.style="display: block";
     })
-    btnCancel.addEventListener('click',()=>{
+    btnCancel.addEventListener('click',() =>{
         location.reload();
     })
+
+console.log(datas)

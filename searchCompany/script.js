@@ -4,75 +4,85 @@ const btnAdd = document.getElementById('add');
 const btnCancel = document.getElementById('cancelar');
 const btnAddCompany = document.getElementById('addCompany');
 
-const inputCompanyName = document.getElementById('company');
-const inputProprietaryName = document.getElementById('proprietary');
-const inputCNPJ = document.getElementById('cnpj');
-const inputs = document.querySelector('.inputs');
+let inputCompanyName = document.getElementById('company');
+let inputProprietaryName = document.getElementById('proprietary');
+let inputCNPJ = document.getElementById('cnpj');
+let inputs = document.querySelector('input');
 
-const statusActive = document.getElementById("ativa");
-const statusInative = document.getElementById("inativa");
-let statusCompany = "";
+const statusActive = document.getElementById('ativa');
+const statusInactive = document.getElementById('inativa');
+let statusCompany = '';
 
 const p = document.querySelectorAll('.companies p');
 
 const messageFill = document.querySelector('.input-box span');
 
-const companyData = {};
-const datas = [];
+let datas = [];
 
-    function checkClicked () {
-        if(statusActive.checked) {
-            
-            statusInative.disabled = true;
-            statusCompany = "Ativa";
-        } else if (statusInative.checked) {
-            statusActive.disabled= true;
-            statusCompany = "Inativa";
-        } else {
-            statusCompany = "";
-            statusActive.disabled = false;
-            statusInative.disabled =false;
-        }
+function checkClicked() {
+    if (statusActive.checked) {
+        statusInactive.disabled = true;
+        statusActive.checked = false;
+        statusCompany = 'Ativa';
+    } else if (statusInactive.checked) {
+        statusActive.disabled = true;
+        statusInactive.checked = false;
+        statusCompany = 'Inativa';
+    } else {
+        statusCompany = '';
+        statusActive.disabled = false;
+        statusInactive.disabled = false;
     }
+}
 
-    const addCompany = (company, proprietary, cnpj, status) => {
-           
-        companyData['name'] = company;
-        companyData['representant'] =  proprietary;
-        companyData['cnpj']=  cnpj;
-        companyData['status'] =  status;
 
-        card.style.display = "none";
-        companies.style.display = "block";
+function addCompany(company, proprietary, cnpj, status) {
+    const companyData = {
+        name: company,
+        representant: proprietary,
+        cnpj: cnpj,
+        status: status,
+    };
 
-        localStorage.setItem('empresa', companyData.name);
-        localStorage.setItem('proprietário', companyData.representant);
-        localStorage.setItem('cnpj', companyData.cnpj);
-        localStorage.setItem('status', companyData.status);	
-
-        datas.push({
-            name: localStorage.getItem('empresa'),
-                    representant: localStorage.getItem('proprietário'),
-                    cnpj: localStorage.getItem('cnpj'),
-                    status: localStorage.getItem('status')
-	})
- }
-
-    inputs.addEventListener("blur", () => {
-        messageFill.classList.add('hidden');
-    });    
+    localStorage.setItem('empresa', companyData.name);
+    localStorage.setItem('proprietário', companyData.representant);
+    localStorage.setItem('cnpj', companyData.cnpj);
+    localStorage.setItem('status', companyData.status);	
     
-    btnAddCompany.addEventListener("click", (event) => {
-        event.preventDefault();
-        addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
-    });
-    
+    card.style.display = 'none';
+    companies.style.display = 'block';    
 
-    btnAdd.addEventListener("click", () => {
-        card.style="display: block";
-    })
-    btnCancel.addEventListener('click',() =>{
-        location.reload();
-    })
+    datas.push(companyData);
+    console.table(localStorage);
 
-console.log(datas)
+    p[0].textContent = `Nome da empresa: ${localStorage.getItem('empresa')}`;
+    p[1].textContent = `Representante: ${localStorage.getItem('proprietário')}`;
+    p[2].textContent = `CNPJ: ${localStorage.getItem('cnpj')}`;
+    p[3].textContent = `Status: ${localStorage.getItem('status')}`;
+
+    //reset
+
+    inputCompanyName.value = "";
+    inputProprietaryName.value = "";
+    inputCNPJ.value = "";
+    statusActive.checked = false;
+    statusInactive.disabled = false;
+
+}
+
+inputs.addEventListener('blur', () => {
+    messageFill.classList.add('hidden');
+});
+
+btnAddCompany.addEventListener('click', (event) => {
+    event.preventDefault();
+    addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+});
+
+btnAdd.addEventListener('click', () => {
+    card.style.display = 'block';
+});
+
+btnCancel.addEventListener('click', () => {
+    location.reload();
+});

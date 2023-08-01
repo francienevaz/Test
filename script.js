@@ -58,7 +58,7 @@ const datas = [];
 	})
         	
 
- }}
+ }
 
     inputs.addEventListener("blur", () => {
         messageFill.classList.add('hidden');

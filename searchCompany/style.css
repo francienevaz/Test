@@ -119,9 +119,11 @@
 
 	.input-box input[type="radio"] {
 		height: 20px;
-		accent-color: #2cf105;
 		cursor: pointer;
+	}
 
+	input[type="radio"]:checked {
+		background-color: #05cef1;
 	}
 
 	.input-box .icon {

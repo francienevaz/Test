@@ -8,17 +8,15 @@ const inputCompanyName = document.getElementById('company');
 const inputProprietaryName = document.getElementById('proprietary');
 const inputCNPJ = document.getElementById('cnpj');
 const inputs = document.querySelector('.inputs');
+const inputSearch = document.getElementById("search").value;
 
 const statusActive = document.getElementById("ativa");
 const statusInative = document.getElementById("inativa");
 let statusCompany = "";
 
-const p = document.querySelectorAll('.companies p');
-
 const messageFill = document.querySelector('.input-box span');
 
-const companyData = {};
-const datas = [];
+let datas = [];
 
     function checkClicked () {
         if(statusActive.checked) {
@@ -36,29 +34,78 @@ const datas = [];
     }
 
     const addCompany = (company, proprietary, cnpj, status) => {
-           
-        	companyData['name'] = company;
-        	companyData['representant'] =  proprietary;
-        	companyData['cnpj']=  cnpj;
-        	companyData['status'] =  status;
 
-        	card.style.display = "none";
+           	if(localStorage.dataCompany) {
+		datas = JSON.parse(localStorage.getItem('dataCompany'));
+	}
+
+	let newCompany = {
+		name : company,
+		representant: proprietary,
+		cnpj: cnpj,
+		status: status
+	};
+
+	datas.push(newCompany);
+
+	card.style.display = "none";
         	companies.style.display = "block";
-
-	localStorage.setItem('empresa', companyData.name);
-	localStorage.setItem('proprietário', companyData.representant);
-	localStorage.setItem('cnpj', companyData.cnpj);
-	localStorage.setItem('status', companyData.status);	
 	
-	datas.push({
-		name: localStorage.getItem('empresa'),
-        		representant: localStorage.getItem('proprietário'),
-        		cnpj: localStorage.getItem('cnpj'),
-        		status: localStorage.getItem('status')
-	})
-        	
+	// reset
+	inputCompanyName.value= "";
+	inputProprietaryName.value="";
+	inputCNPJ.value="";
+	statusActive.checked = "false";
+	statusInative.checked= "false";	
+	
+	localStorage.dataCompany = JSON.stringify(datas);
+
+	let data = JSON.parse(localStorage.dataCompany);
+
+   	data.forEach((cadastro)=>{
+
+	let p = document.createElement("p");
+        	p.textContent = `Nome da Empresa: ${cadastro.name}`;
+        	companies.appendChild(p);
+        	p = document.createElement("p");
+        	p.textContent = `Representante: ${cadastro.representant}`;
+        	companies.appendChild(p);
+        	p = document.createElement("p");
+        	p.textContent = `CNPJ: ${cadastro.cnpj}`;
+        	companies.appendChild(p);
+        	p = document.createElement("p");
+        	p.textContent = `Status: ${cadastro.status}`;
+        	companies.appendChild(p);
+    })
 
  }
+
+const search = () => {
+	let data = JSON.parse(localStorage.dataCompany);
+	
+	for (let i in data) {
+		if (inputSearch.includes(data[i])) {
+			let p = document.createElement("p");
+        			p.textContent = `Nome da Empresa: ${data.name}`;
+        			companies.appendChild(p);
+        			p = document.createElement("p");
+        			p.textContent = `Representante: ${data.representant}`;
+        			companies.appendChild(p);
+        			p = document.createElement("p");
+        			p.textContent = `CNPJ: ${data.cnpj}`;
+        			companies.appendChild(p);
+        			p = document.createElement("p");
+        			p.textContent = `Status: ${data.status}`;
+        			companies.appendChild(p);
+			i++;
+		} else {
+			let p = document.createElement("p");
+			p.textContent = `Cadastro não encontrado`;
+        			companies.appendChild(p);
+		}
+	}
+	
+}
 
     inputs.addEventListener("blur", () => {
         messageFill.classList.add('hidden');
@@ -76,5 +123,3 @@ const datas = [];
     btnCancel.addEventListener('click',() =>{
         location.reload();
     })
-
-console.log(datas)

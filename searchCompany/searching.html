@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 	<div class="search">
-		<input type="text" placeholder="Search..." spellcheck="false">
+		<input id="search" type="text" placeholder="Search..." spellcheck="false">
 		<button id="btnFilter" class="btn" onClick="companyFilter()"><img>🔎</img></button>
 		<button id="add"><img> Adicionar ➕</img></button>
 	</div>
@@ -56,12 +56,7 @@
             </form>
 		</div> 
 	</div>
-		<div class="companies" style="display: none;">
-			<p>Nome da empresa:</p>
-			<p>Representante:</p>
-			<p>CNPJ:</p>
-			<p>Status:</p>
-		</div>
+		<div class="companies" style="display: none;"></div>
 	</div>
 </div>
     <script src="script.js"></script>

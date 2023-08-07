@@ -3,12 +3,13 @@ const companies = document.querySelector('.companies');
 const btnAdd = document.getElementById('add');
 const btnCancel = document.getElementById('cancelar');
 const btnAddCompany = document.getElementById('addCompany');
+const btnSearch = document.getElementById('btnFilter');
 
 const inputCompanyName = document.getElementById('company');
 const inputProprietaryName = document.getElementById('proprietary');
 const inputCNPJ = document.getElementById('cnpj');
 const inputs = document.querySelector('.inputs');
-const inputSearch = document.getElementById("search").value;
+const inputSearch = document.getElementById("search");
 
 const statusActive = document.getElementById("ativa");
 const statusInative = document.getElementById("inativa");
@@ -50,7 +51,7 @@ let datas = [];
 	datas.push(newCompany);
 
 	card.style.display = "none";
-        	companies.style.display = "block";
+    companies.style.display = "block";
 	
 	// reset
 	inputCompanyName.value= "";
@@ -66,43 +67,47 @@ let datas = [];
    	data.forEach((cadastro)=>{
 
 	let p = document.createElement("p");
-        	p.textContent = `Nome da Empresa: ${cadastro.name}`;
-        	companies.appendChild(p);
-        	p = document.createElement("p");
-        	p.textContent = `Representante: ${cadastro.representant}`;
-        	companies.appendChild(p);
-        	p = document.createElement("p");
-        	p.textContent = `CNPJ: ${cadastro.cnpj}`;
-        	companies.appendChild(p);
-        	p = document.createElement("p");
-        	p.textContent = `Status: ${cadastro.status}`;
-        	companies.appendChild(p);
+        p.textContent = `Nome da Empresa: ${cadastro.name}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `Representante: ${cadastro.representant}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `CNPJ: ${cadastro.cnpj}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `Status: ${cadastro.status}`;
+        companies.appendChild(p);
     })
 
  }
 
 const search = () => {
 	let data = JSON.parse(localStorage.dataCompany);
+    let inputSearch = document.getElementById('search').value;
 	
 	for (let i in data) {
-		if (inputSearch.includes(data[i])) {
+
+        // console.log(data[i])
+
+		if (data[i].name.toLowerCase().includes(data[i].name.toLowerCase())) {
 			let p = document.createElement("p");
-        			p.textContent = `Nome da Empresa: ${data.name}`;
-        			companies.appendChild(p);
-        			p = document.createElement("p");
-        			p.textContent = `Representante: ${data.representant}`;
-        			companies.appendChild(p);
-        			p = document.createElement("p");
-        			p.textContent = `CNPJ: ${data.cnpj}`;
-        			companies.appendChild(p);
-        			p = document.createElement("p");
-        			p.textContent = `Status: ${data.status}`;
-        			companies.appendChild(p);
-			i++;
+            p.textContent = `Nome da Empresa: ${data.name}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `Representante: ${data.representant}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `CNPJ: ${data.cnpj}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `Status: ${data.status}`;
+            companies.appendChild(p);
+		i++;
 		} else {
 			let p = document.createElement("p");
 			p.textContent = `Cadastro não encontrado`;
-        			companies.appendChild(p);
+            companies.appendChild(p);
 		}
 	}
 	
@@ -121,6 +126,10 @@ btnAddCompany.addEventListener("click", (event) => {
 btnAdd.addEventListener("click", () => {
     card.style="display: block";
 })
-btnCancel.addEventListener('click',() =>{
+btnCancel.addEventListener("click",() =>{
         location.reload();
+})
+
+btnSearch.addEventListener("click", () => {
+    search();
 })

@@ -8,7 +8,6 @@ const btnSearch = document.getElementById('btnFilter');
 const inputCompanyName = document.getElementById('company');
 const inputProprietaryName = document.getElementById('proprietary');
 const inputCNPJ = document.getElementById('cnpj');
-const inputs = document.querySelector('.inputs');
 const inputSearch = document.getElementById("search");
 
 const statusActive = document.getElementById("ativa");
@@ -16,8 +15,6 @@ const statusInative = document.getElementById("inativa");
 let statusCompany = "";
 
 const messageFill = document.querySelector('.input-box span');
-
-let datas = [];
 
     function checkClicked() {
         if (statusActive.checked) {
@@ -52,14 +49,14 @@ let datas = [];
 	datas.push(newCompany);
 
 	card.style.display = "none";
-    companies.style.display = "block";
+   	companies.style.display = "block";
 	
 	// reset
 	inputCompanyName.value= "";
 	inputProprietaryName.value="";
 	inputCNPJ.value="";
-	statusActive.checked = "false";
-	statusInative.checked= "false";	
+	statusActive.checked = false;
+	statusInative.checked= false;	
 	
 	localStorage.dataCompany = JSON.stringify(datas);
 
@@ -84,11 +81,13 @@ let datas = [];
  }
 
 const search = (input) => {
-	let data = JSON.parse(localStorage.dataCompany);
+	let data = JSON.parse(localStorage.getItem('dataCompany'));
 	
+	companies.innerHTML = ""; 
+
        	for (let  i in data) {
 		
-		if(data[i].name == input || data[i].representant == input || data[i].cnpj == input  || data[i].status == input ) {
+		if(data[i].name.toLowerCase() == input || data[i].representant.toLowerCase() == input || data[i].cnpj.toString() == input  || data[i].status.toLowerCase() == input ) {
 			let p = document.createElement("p");
        			p.textContent = `Nome da Empresa: ${data[i].name}`;
         			companies.appendChild(p);
@@ -106,10 +105,16 @@ const search = (input) => {
 	companies.appendChild(p);
 }
 
-inputs.addEventListener("blur", () => {
-    messageFill.classList.add('hidden');
+inputCompanyName.addEventListener("blur", () => {
+    messageFill.classList.remove('hidden');
 });    
-    
+inputProprietaryName.addEventListener("blur", () => {
+    messageFill.classList.remove('hidden');
+});      
+inputCNPJ.addEventListener("blur", () => {
+    messageFill.classList.remove('hidden');
+});
+
 btnAddCompany.addEventListener("click", (event) => {
     event.preventDefault();
     addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
@@ -124,5 +129,5 @@ btnCancel.addEventListener("click",() =>{
 })
 
 btnSearch.addEventListener("click", () => {
-    search(inputSearch.value);
+    search(inputSearch.value.toLowerCase());
 })

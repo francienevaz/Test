@@ -30,7 +30,7 @@ const messageFill = document.querySelector('.input-box span');
             statusActive.disabled = false;
             statusInative.disabled = false;
         }
-    }
+    };
 
     const addCompany = (company, proprietary, cnpj, status) => {
 	let datas = []; 
@@ -76,34 +76,32 @@ const messageFill = document.querySelector('.input-box span');
         	p = document.createElement("p");
         	p.textContent = `Status: ${cadastro.status}`;
         	companies.appendChild(p);
-    })
+    	});
 
- }
+ };
 
-const search = (input) => {
-	let data = JSON.parse(localStorage.getItem('dataCompany'));
+const search = async (input) => {
+	let data = await JSON.parse(localStorage.getItem('dataCompany'));
 	
 	companies.innerHTML = ""; 
 
        	for (let  i in data) {
+	let nome = data[i].name.toLowerCase();
+	let proprietary = data[i].representant.toLowerCase();
+	let cnpj = data[i].cnpj.toString();
+	let status = data[i].status.toLowerCase();
 		
-		if(data[i].name.toLowerCase() == input || data[i].representant.toLowerCase() == input || data[i].cnpj.toString() == input  || data[i].status.toLowerCase() == input ) {
-			let p = document.createElement("p");
-       			p.textContent = `Nome da Empresa: ${data[i].name}`;
-        			companies.appendChild(p);
-			p.textContent = `Nome do Representante: ${data[i].representant}`;
-        			companies.appendChild(p);
-			p.textContent = `CNPJ: ${data[i].cnpj}`;
-        			companies.appendChild(p);
-			p.textContent = `Status: ${data[i].status}`;
-        			companies.appendChild(p);
-		} 
-	}
-	
-	let p = document.createElement("p");
-       	p.textContent = `${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`;
-	companies.appendChild(p);
-}
+		if (nome == input) {
+			
+       			console.log(nome)
+			console.log(proprietary)
+			console.log(cnpj)
+			console.log(status)
+        			
+		} else {
+			console.log(`${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`)
+	}}
+};
 
 inputCompanyName.addEventListener("blur", () => {
     messageFill.classList.remove('hidden');
@@ -123,11 +121,12 @@ btnAddCompany.addEventListener("click", (event) => {
 
 btnAdd.addEventListener("click", () => {
     card.style="display: block";
-})
+});
 btnCancel.addEventListener("click",() =>{
         location.reload();
-})
+});
 
-btnSearch.addEventListener("click", () => {
+btnSearch.addEventListener("click", (event) => {
+    event.preventDefault();
     search(inputSearch.value.toLowerCase());
-})
+});

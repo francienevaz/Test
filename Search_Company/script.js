@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+    
 const card = document.querySelector('.card');
 const companies = document.querySelector('.companies');
 const btnAdd = document.getElementById('add');
@@ -80,11 +82,17 @@ const messageFill = document.querySelector('.input-box span');
 
  };
 
-const search = async (input) => {
-	let data = await JSON.parse(localStorage.getItem('dataCompany'));
+const search = (input) => {
+
+	let data = []; 
+	
+        if (localStorage.dataCompany) {
+		data = JSON.parse(localStorage.getItem('dataCompany'));
+	}
+
 	let found = false;
 	
-	companies.innerHTML = ""; 
+	companies.textContent = ""; 
 
 	for (let  i in data) {
 		let name = data[i].name.toLowerCase();
@@ -106,7 +114,7 @@ const search = async (input) => {
             p = document.createElement("p");
             p.textContent = `Status: ${status}`;
             companies.appendChild(p);
-			return found = true;
+			found = true;
         			
 		} 
 	}
@@ -145,3 +153,6 @@ btnSearch.addEventListener("click", (event) => {
     event.preventDefault();
     search(inputSearch.value.toLowerCase());
 });
+});
+
+

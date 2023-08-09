@@ -82,25 +82,40 @@ const messageFill = document.querySelector('.input-box span');
 
 const search = async (input) => {
 	let data = await JSON.parse(localStorage.getItem('dataCompany'));
+	let found = false;
 	
 	companies.innerHTML = ""; 
 
-       	for (let  i in data) {
-	let nome = data[i].name.toLowerCase();
-	let proprietary = data[i].representant.toLowerCase();
-	let cnpj = data[i].cnpj.toString();
-	let status = data[i].status.toLowerCase();
+	for (let  i in data) {
+		let name = data[i].name.toLowerCase();
+		let proprietary = data[i].representant.toLowerCase();
+		let cnpj = data[i].cnpj.toString();
+		let status = data[i].status.toLowerCase();
 		
-		if (nome == input) {
+		if (name == input || proprietary == input || cnpj == input || status == input) {
 			
-       			console.log(nome)
-			console.log(proprietary)
-			console.log(cnpj)
-			console.log(status)
+			let p = document.createElement("p");
+            p.textContent = `Nome da Empresa: ${name}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `Representante: ${proprietary}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `CNPJ: ${cnpj}`;
+            companies.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = `Status: ${status}`;
+            companies.appendChild(p);
+			return found = true;
         			
-		} else {
-			console.log(`${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`)
-	}}
+		} 
+	}
+
+	if (!found){
+		let p = document.createElement("p");
+		p.textContent= `${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`;
+		companies.appendChild(p);
+}
 };
 
 inputCompanyName.addEventListener("blur", () => {
@@ -123,7 +138,7 @@ btnAdd.addEventListener("click", () => {
     card.style="display: block";
 });
 btnCancel.addEventListener("click",() =>{
-        location.reload();
+    location.reload();
 });
 
 btnSearch.addEventListener("click", (event) => {

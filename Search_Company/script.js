@@ -1,160 +1,166 @@
-document.addEventListener("DOMContentLoaded", function () {    
+const card = document.querySelector('.card');
+const companies = document.querySelector('.companies');
+const btnAdd = document.getElementById('add');
+const btnCancel = document.getElementById('cancelar');
+const btnAddCompany = document.getElementById('addCompany');
+const btnSearch = document.getElementById('btnFilter');
 
-	const card = document.querySelector('.card');
-	const companies = document.querySelector('.companies');
-	const btnAdd = document.getElementById('add');
-	const btnCancel = document.getElementById('cancelar');
-	const btnAddCompany = document.getElementById('addCompany');
-	const btnSearch = document.getElementById('btnFilter');
+const inputCompanyName = document.getElementById('company');
+const inputProprietaryName = document.getElementById('proprietary');
+const inputCNPJ = document.getElementById('cnpj');
+const inputSearch = document.getElementById("search");
 
-	const inputCompanyName = document.getElementById('company');
-	const inputProprietaryName = document.getElementById('proprietary');
-	const inputCNPJ = document.getElementById('cnpj');
-	const inputSearch = document.getElementById("search");
+const statusActive = document.getElementById("ativa");
+const statusInative = document.getElementById("inativa");
+let statusCompany = "";
 
-	const statusActive = document.getElementById("ativa");
-	const statusInative = document.getElementById("inativa");
-	let statusCompany = "";
+const messageFill = document.querySelector('.input-box span');
 
-	const messageFill = document.querySelector('.input-box span');
-
-	function checkClicked() {
-		if (statusActive.checked) {
-			statusInative.disabled = true;
-			statusActive.checked = false;
-			statusCompany = 'Ativa';
-		} else if (statusInative.checked) {
-			statusActive.disabled = true;
-			statusInative.checked = false;
-			statusCompany = 'Inativa';
-		} else {
-			statusCompany = '';
-			statusActive.disabled = false;
-			statusInative.disabled = false;
-		}
-	};
-
-	const addCompany = (company, proprietary, cnpj, status) => {
-	let datas = []; 
-
-		if(localStorage.dataCompany) {
-		datas = JSON.parse(localStorage.getItem('dataCompany'));
+const checkClicked = () => {
+	if (statusActive.checked) {
+		statusInative.disabled = true;
+		statusActive.checked = false;
+		statusCompany = 'Ativa';
+	} else if (statusInative.checked) {
+		statusActive.disabled = true;
+		statusInative.checked = false;
+		statusCompany = 'Inativa';
+	} else {
+		statusCompany = '';
+		statusActive.disabled = false;
+		statusInative.disabled = false;
 	}
+};
 
-	let newCompany = {
-		name : company,
-		representant: proprietary,
-		cnpj: cnpj,
-		status: status
-	};
+const addCompany = (company, proprietary, cnpj, status) => {
+let datas = []; 
 
-	datas.push(newCompany);
+	if(localStorage.dataCompany) {
+	datas = JSON.parse(localStorage.getItem('dataCompany'));
+}
 
-	card.style.display = "none";
-	companies.style.display = "block";
+let newCompany = {
+	name : company,
+	representant: proprietary,
+	cnpj: cnpj,
+	status: status
+};
 
-	// reset
-	inputCompanyName.value= "";
-	inputProprietaryName.value="";
-	inputCNPJ.value="";
-	statusActive.checked = false;
-	statusInative.checked= false;	
+datas.push(newCompany);
 
-	localStorage.dataCompany = JSON.stringify(datas);
+card.style.display = "none";
+companies.style.display = "block";
 
-	let data = JSON.parse(localStorage.dataCompany);
+// reset
+inputCompanyName.value= "";
+inputProprietaryName.value="";
+inputCNPJ.value="";
+statusActive.checked = false;
+statusInative.checked= false;	
 
-	data.forEach((cadastro)=>{
+localStorage.dataCompany = JSON.stringify(datas);
 
-	let p = document.createElement("p");
-		p.textContent = `Nome da Empresa: ${cadastro.name}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `Representante: ${cadastro.representant}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `CNPJ: ${cadastro.cnpj}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `Status: ${cadastro.status}`;
-			companies.appendChild(p);
-		});
+let data = JSON.parse(localStorage.dataCompany);
 
-	};
+data.forEach((cadastro)=>{
 
-	const search = async (input) => {
-
-	let data = []; 
-
-		if (localStorage.dataCompany) {
-		data = await JSON.parse(localStorage.getItem('dataCompany'));
-	}
-
-	let found = false;
-
-	card.style.display = "none";
-	companies.style.display = "block";
-	companies.textContent = ""; 
-
-	for (let  i in data) {
-		let name = data[i].name.toLowerCase();
-		let proprietary = data[i].representant.toLowerCase();
-		let cnpj = data[i].cnpj.toString();
-		let status = data[i].status.toLowerCase();
-		
-		if (name == input || proprietary == input || cnpj == input || status == input) {
-			
-			let p = document.createElement("p");
-			p.textContent = `Nome da Empresa: ${name}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `Representante: ${proprietary}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `CNPJ: ${cnpj}`;
-			companies.appendChild(p);
-			p = document.createElement("p");
-			p.textContent = `Status: ${status}`;
-			companies.appendChild(p);
-			found = true;
-					
-		} 
-	}
-
-	if (!found){
-		let p = document.createElement("p");
-		p.textContent= `${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`;
+let p = document.createElement("p");
+	p.textContent = `Nome da Empresa: ${cadastro.name}`;
 		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `Representante: ${cadastro.representant}`;
+		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `CNPJ: ${cadastro.cnpj}`;
+		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `Status: ${cadastro.status}`;
+		companies.appendChild(p);
+	});
+
+};
+
+const search = async (input) => {
+
+let data = []; 
+
+	if (localStorage.dataCompany) {
+	data = await JSON.parse(localStorage.getItem('dataCompany'));
+}
+
+let found = false;
+
+card.style.display = "none";
+companies.style.display = "block";
+companies.textContent = ""; 
+
+for (let  i in data) {
+	let name = data[i].name.toLowerCase();
+	let proprietary = data[i].representant.toLowerCase();
+	let cnpj = data[i].cnpj.toString();
+	let status = data[i].status.toLowerCase();
+	
+	if (name == input || proprietary == input || cnpj == input || status == input) {
+		
+		let p = document.createElement("p");
+		p.textContent = `Nome da Empresa: ${name}`;
+		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `Representante: ${proprietary}`;
+		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `CNPJ: ${cnpj}`;
+		companies.appendChild(p);
+		p = document.createElement("p");
+		p.textContent = `Status: ${status}`;
+		companies.appendChild(p);
+		found = true;
+		document.getElementById("search").value = "";
+		document.getElementById("search").focus();
+				
+	} 
+}
+
+if (!found){
+	let p = document.createElement("p");
+	p.textContent= `${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`;
+	companies.appendChild(p);
+}
+};
+
+const pressEnter = (event) => {	
+	if (event.keyCode === 13 && inputSearch.value !== "") {
+	  search(inputSearch.value.toLowerCase())
 	}
-	};
+}
 
-	inputCompanyName.addEventListener("blur", () => {
-	messageFill.classList.remove('hidden');
-	});    
-	inputProprietaryName.addEventListener("blur", () => {
-	messageFill.classList.remove('hidden');
-	});      
-	inputCNPJ.addEventListener("blur", () => {
-	messageFill.classList.remove('hidden');
-	});
-
-	btnAddCompany.addEventListener("click", (event) => {
-	event.preventDefault();
-	addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
-	});
-
-
-	btnAdd.addEventListener("click", () => {
-	card.style="display: block";
-	});
-	btnCancel.addEventListener("click",() =>{
-	location.reload();
-	});
-
-	btnSearch.addEventListener("click", (event) => {
-	event.preventDefault();
-	search(inputSearch.value.toLowerCase());
-	});
+inputCompanyName.addEventListener("blur", () => {
+messageFill.classList.remove('hidden');
+});    
+inputProprietaryName.addEventListener("blur", () => {
+messageFill.classList.remove('hidden');
+});      
+inputCNPJ.addEventListener("blur", () => {
+messageFill.classList.remove('hidden');
 });
 
+btnAddCompany.addEventListener("click", (event) => {
+event.preventDefault();
+addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+});
+
+
+btnAdd.addEventListener("click", () => {
+card.style="display: block";
+});
+btnCancel.addEventListener("click",() =>{
+location.reload();
+});
+
+btnSearch.addEventListener("click", (event) => {
+event.preventDefault();
+search(inputSearch.value.toLowerCase());
+});
+
+document.addEventListener("keydown", pressEnter);
 

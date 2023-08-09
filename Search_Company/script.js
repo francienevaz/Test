@@ -92,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let found = false;
 
+	card.style.display = "none";
+	companies.style.display = "block";
 	companies.textContent = ""; 
 
 	for (let  i in data) {

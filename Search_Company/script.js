@@ -84,6 +84,16 @@ const search = async (input) => {
 
 let data = []; 
 
+	if (inputSearch.value == "") {
+		let p = document.createElement("p");
+		companies.appendChild(p);
+		companies.style.display = "block";
+		p.textContent = "Por favor digite um valor válido!"
+		return setTimeout(() => {
+			location.reload()
+		}, 1500);
+	}
+
 	if (localStorage.dataCompany) {
 	data = await JSON.parse(localStorage.getItem('dataCompany'));
 }
@@ -100,7 +110,7 @@ for (let  i in data) {
 	let cnpj = data[i].cnpj.toString();
 	let status = data[i].status.toLowerCase();
 	
-	if (name == input || proprietary == input || cnpj == input || status == input) {
+	if (name.includes(input) || proprietary.includes(input)  || cnpj.includes(input)  || status.includes(input)) {
 		
 		let p = document.createElement("p");
 		p.textContent = `Nome da Empresa: ${name}`;

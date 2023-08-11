@@ -13,6 +13,7 @@ const inputSearch = document.getElementById("search");
 const statusActive = document.getElementById("ativa");
 const statusInative = document.getElementById("inativa");
 let statusCompany = "";
+let stopFunction = true;
 
 const messageFill = document.querySelector('.input-box span');
 
@@ -84,17 +85,16 @@ const search = async (input) => {
 
 let data = []; 
 
-	if (inputSearch.value == "") {
+	if (inputSearch.value == "" && stopFunction) {
+
 		let p = document.createElement("p");
 		companies.appendChild(p);
 		companies.style.display = "block";
-		p.textContent = "Por favor digite um valor válido!"
-		return setTimeout(() => {
-			location.reload()
-		}, 1500);
+		p.textContent = "Por favor digite um valor válido!"	
+		return stopFunction = false;
 	}
 
-	if (localStorage.dataCompany) {
+	if (localStorage.dataCompany && inputSearch.value !== "") {
 	data = await JSON.parse(localStorage.getItem('dataCompany'));
 }
 
@@ -133,7 +133,7 @@ for (let  i in data) {
 
 if (!found){
 	let p = document.createElement("p");
-	p.textContent= `${input} não consta em nosso sistema, clique em "Adicionar" para fazer o seu cadastro!`;
+	p.textContent= `${input} não encontrado, clique em "Adicionar" para fazer o seu cadastro!`;
 	companies.appendChild(p);
 }
 };

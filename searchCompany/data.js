@@ -46,9 +46,10 @@ const addCompany = (company, proprietary, cnpj, status) => {
         status: status
     };
 
-    data = JSON.stringify(datas);
     // Adicione o novo objeto ao array datas
     datas.push(newCompany);
+
+    console.log(data);
 
     card.style.display = "none";
     companies.style.display = "block";

@@ -39,14 +39,16 @@ const addCompany = (company, proprietary, cnpj, status) => {
     .then(response => response.json())
     .then(data => {
     // Modifica os dados do JSON conforme necessário
-    data.cadastro = {
-        name : company,
-	    representant: proprietary,
-	    cnpj: cnpj,
-	    status: status
-    }
+    const newCompany = {
+        name: company,
+        representant: proprietary,
+        cnpj: cnpj,
+        status: status
+    };
 
-    datas.push(data);
+    data = JSON.stringify(datas);
+    // Adicione o novo objeto ao array datas
+    datas.push(newCompany);
 
     card.style.display = "none";
     companies.style.display = "block";
@@ -61,18 +63,18 @@ const addCompany = (company, proprietary, cnpj, status) => {
     datas.forEach((cadastro)=>{
 
         let p = document.createElement("p");
-            p.textContent = `Nome da Empresa: ${cadastro.name}`;
-                companies.appendChild(p);
-                p = document.createElement("p");
-                p.textContent = `Representante: ${cadastro.representant}`;
-                companies.appendChild(p);
-                p = document.createElement("p");
-                p.textContent = `CNPJ: ${cadastro.cnpj}`;
-                companies.appendChild(p);
-                p = document.createElement("p");
-                p.textContent = `Status: ${cadastro.status}`;
-                companies.appendChild(p);
-            });
+        p.textContent = `Nome da Empresa: ${cadastro.name}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `Representante: ${cadastro.representant}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `CNPJ: ${cadastro.cnpj}`;
+        companies.appendChild(p);
+        p = document.createElement("p");
+        p.textContent = `Status: ${cadastro.status}`;
+        companies.appendChild(p);
+        });
 
     })
     .catch(error => console.error('Ocorreu um erro:', error));
@@ -81,5 +83,13 @@ const addCompany = (company, proprietary, cnpj, status) => {
 btnAddCompany.addEventListener("click", (event) => {
     event.preventDefault();
     addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+});
+
+btnAdd.addEventListener("click", () => {
+    card.style="display: block";
+});
+
+btnCancel.addEventListener("click",() =>{
+location.reload();
 });
 

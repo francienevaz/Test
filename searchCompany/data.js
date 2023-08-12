@@ -1,44 +1,12 @@
-const card = document.querySelector('.card');
-const companies = document.querySelector('.companies');
-const btnAdd = document.getElementById('add');
-const btnCancel = document.getElementById('cancelar');
-const btnAddCompany = document.getElementById('addCompany');
-const btnSearch = document.getElementById('btnFilter');
+const express = require('express');
+const fs = require('fs/promises');
+const app = express();
+const PORT = 3000;
 
-const inputCompanyName = document.getElementById('company');
-const inputProprietaryName = document.getElementById('proprietary');
-const inputCNPJ = document.getElementById('cnpj');
-const inputSearch = document.getElementById("search");
+app.use(express.json());
 
-const statusActive = document.getElementById("ativa");
-const statusInative = document.getElementById("inativa");
-let statusCompany = "";
-
-// const messageFill = document.querySelector('.input-box span');
-
-const checkClicked = () => {
-	if (statusActive.checked) {
-		statusInative.disabled = true;
-		statusActive.checked = false;
-		statusCompany = 'Ativa';
-	} else if (statusInative.checked) {
-		statusActive.disabled = true;
-		statusInative.checked = false;
-		statusCompany = 'Inativa';
-	} else {
-		statusCompany = '';
-		statusActive.disabled = false;
-		statusInative.disabled = false;
-	}
-};
-
-const addCompany = (company, proprietary, cnpj, status) => {
-    let datas = [];
-
-    fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-    // Modifica os dados do JSON conforme necessário
+app.post('/adicionar-empresa', async (req, res) => {
+    const { company, proprietary, cnpj, status } = req.body;
     const newCompany = {
         name: company,
         representant: proprietary,
@@ -46,51 +14,24 @@ const addCompany = (company, proprietary, cnpj, status) => {
         status: status
     };
 
-    // Adicione o novo objeto ao array datas
-    datas.push(newCompany);
+    try {
+        // Leia o arquivo existente
+        const existingData = await fs.readFile('data.json', 'utf-8');
+        const datas = JSON.parse(existingData);
 
-    console.log(data);
+        // Adicione o novo objeto ao array datas
+        datas.push(newCompany);
 
-    card.style.display = "none";
-    companies.style.display = "block";
+        // Escreva os dados de volta no arquivo
+        await fs.writeFile('data.json', JSON.stringify(datas, null, 2), 'utf-8');
 
-    // reset
-    inputCompanyName.value= "";
-    inputProprietaryName.value="";
-    inputCNPJ.value="";
-    statusActive.checked = false;
-    statusInative.checked= false;
-
-    datas.forEach((cadastro)=>{
-
-        let p = document.createElement("p");
-        p.textContent = `Nome da Empresa: ${cadastro.name}`;
-        companies.appendChild(p);
-        p = document.createElement("p");
-        p.textContent = `Representante: ${cadastro.representant}`;
-        companies.appendChild(p);
-        p = document.createElement("p");
-        p.textContent = `CNPJ: ${cadastro.cnpj}`;
-        companies.appendChild(p);
-        p = document.createElement("p");
-        p.textContent = `Status: ${cadastro.status}`;
-        companies.appendChild(p);
-        });
-
-    })
-    .catch(error => console.error('Ocorreu um erro:', error));
-}
-
-btnAddCompany.addEventListener("click", (event) => {
-    event.preventDefault();
-    addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+        res.status(200).send('Empresa adicionada com sucesso!');
+    } catch (error) {
+        console.error('Erro ao adicionar empresa:', error);
+        res.status(500).send('Erro ao adicionar empresa');
+    }
 });
 
-btnAdd.addEventListener("click", () => {
-    card.style="display: block";
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-btnCancel.addEventListener("click",() =>{
-location.reload();
-});
-

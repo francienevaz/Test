@@ -13,6 +13,7 @@ const inputSearch = document.getElementById("search");
 const statusActive = document.getElementById("ativa");
 const statusInative = document.getElementById("inativa");
 let statusCompany = "";
+let stopFunction = true;
 
 const messageFill = document.querySelector('.input-box span');
 
@@ -84,19 +85,18 @@ const search = async (input) => {
 
 let data = []; 
 
-	if (inputSearch.value == "") {
+	if (inputSearch.value == "" && stopFunction) {
+
 		let p = document.createElement("p");
 		companies.appendChild(p);
 		companies.style.display = "block";
-		p.textContent = "Por favor digite um valor válido!"
-		return setTimeout(() => {
-			location.reload()
-		}, 1500);
+		p.textContent = "Por favor digite um valor válido!"	
+		return stopFunction = false;
 	}
 
-	if (localStorage.dataCompany) {
+	if (localStorage.dataCompany && inputSearch.value !== "") {
 	data = await JSON.parse(localStorage.getItem('dataCompany'));
-}
+	}
 
 let found = false;
 
@@ -158,7 +158,6 @@ btnAddCompany.addEventListener("click", (event) => {
 event.preventDefault();
 addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
 });
-
 
 btnAdd.addEventListener("click", () => {
 card.style="display: block";

@@ -1,3 +1,8 @@
 [
-    
+  {
+    "name": "Empresa Teste",
+    "representant": "Representante teste",
+    "cnpj": "231321156465465",
+    "status": "Inativa"
+  }
 ]

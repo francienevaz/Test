@@ -49,6 +49,9 @@ let newCompany = {
 
 datas.push(newCompany);
 
+// Atualiza os dados no localStorage
+localStorage.setItem('dataCompany', JSON.stringify(datas));
+
 card.style.display = "none";
 companies.style.display = "block";
 
@@ -154,9 +157,29 @@ inputCNPJ.addEventListener("blur", () => {
 messageFill.classList.remove('hidden');
 });
 
-btnAddCompany.addEventListener("click", (event) => {
-event.preventDefault();
-addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+btnAddCompany.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const company = inputCompanyName.value;
+    const proprietary = inputProprietaryName.value;
+    const cnpj = inputCNPJ.value;
+    
+    // Você pode usar uma URL adequada para o seu servidor
+    const response = await fetch('/adiciona-empresa', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ company, proprietary, cnpj, status: statusCompany })
+    });
+
+    if (response.ok) {
+        console.log('Empresa adicionada com sucesso!');
+        // Atualize a interface do usuário conforme necessário
+		addCompany(company, proprietary, cnpj, statusCompany)
+
+    } else {
+        console.error('Erro ao adicionar empresa');
+    }
 });
 
 btnAdd.addEventListener("click", () => {

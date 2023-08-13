@@ -4,8 +4,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static('public'))
 
-app.post('/adicionar-empresa', async (req, res) => {
+app.post('/adiciona-empresa', async (req, res) => {
     const { company, proprietary, cnpj, status } = req.body;
     const newCompany = {
         name: company,

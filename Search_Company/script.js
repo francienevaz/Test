@@ -38,7 +38,17 @@ let datas = [];
 
 	if(localStorage.dataCompany) {
 	datas = JSON.parse(localStorage.getItem('dataCompany'));
+}	
+for (let  i in datas) {
+	let name = datas[i].name.toLowerCase();
+	let represent = datas[i].representant.toLowerCase();
+	let CNPJ = datas[i].cnpj.toString();
+	
+	if (name.includes(company) || represent.includes(proprietary)  || CNPJ.includes(cnpj)) {	
+		return alert(`Já existe uma empresa cadastrada com o nome ${company}`);			
+	} 
 }
+	
 
 let newCompany = {
 	name : company,
@@ -56,8 +66,8 @@ companies.style.display = "block";
 inputCompanyName.value= "";
 inputProprietaryName.value="";
 inputCNPJ.value="";
-statusActive.checked = false;
-statusInative.checked= false;	
+statusActive.disabled = false;
+statusInative.disabled = false;	
 
 localStorage.dataCompany = JSON.stringify(datas);
 
@@ -142,6 +152,13 @@ const pressEnter = (event) => {
 	if (event.keyCode === 13 && inputSearch.value !== "") {
 	  search(inputSearch.value.toLowerCase())
 	}
+	if (event.keyCode === 13 && inputCompanyName.value !== "") {
+		inputProprietaryName.focus();
+	}
+	if (event.keyCode === 13 && inputProprietaryName.value !== "") {
+		inputCNPJ.focus();
+	}
+
 }
 
 inputCompanyName.addEventListener("blur", () => {
@@ -156,12 +173,13 @@ messageFill.classList.remove('hidden');
 
 btnAddCompany.addEventListener("click", (event) => {
 event.preventDefault();
-addCompany(inputCompanyName.value, inputProprietaryName.value, inputCNPJ.value, statusCompany);
+addCompany(inputCompanyName.value.toLowerCase(), inputProprietaryName.value.toLowerCase(), inputCNPJ.value.toString(), statusCompany);
 });
 
 
 btnAdd.addEventListener("click", () => {
 card.style="display: block";
+companies.style.display = "none"; 
 });
 btnCancel.addEventListener("click",() =>{
 location.reload();

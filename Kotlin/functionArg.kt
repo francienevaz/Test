@@ -21,7 +21,7 @@ fun main() {
     fun log(vararg entries: String) {
         printAll(*entries)
 
-        //o * é um spread operator que está sendo usando para chamar a função printAll que também recebe um vararg como argumento, o vararg é um array, logo o * está identificando que a printAll também é um vararg, se tirar não funciona corretamente
+        //o * é um spread operator que está sendo usando para chamar a função printAll que também recebe um vararg como argumento, o vararg é um array, logo o * está identificando que a printAll também é um vararg, o entries é do tipo String, sem o * a função printAll vai ler como uma Array
 
     }
 }

@@ -1,0 +1,20 @@
+mkDir - cria uma pasta
+rmDir - remove uma pasta
+rm -r - apaga um diretorio que nao esta vazio
+touch - cria um arquivo
+ls - lista os arquivos dentro da pasta
+pwd - mostra o caminho do diretorio que voce esta: /dir/home
+clear - limpa a tela
+exit - sai do terminal
+-------------------------------------------------------------
+O Comando apt
+- instala e atualiza pacotes/programas
+sudo apt update
+localiza todos os pacotes a serem atualizados
+
+Para instalar e remover app por linha de comando:
+apt search 'nome do app, nao precisa de aspas'
+//para pesquisar o app
+sudo apt install 'nome do app'
+//para instalar
+sudo apt remove 'nome do app'

@@ -18,3 +18,33 @@ apt search 'nome do app, nao precisa de aspas'
 sudo apt install 'nome do app'
 //para instalar
 sudo apt remove 'nome do app'
+------------------------------------------------------------
+Comandos DPKG
+dpkg --get-selections | grep linux
+dpkg [opcoes] nome_do_pacote
+Principais parametros : 
+-i //para instalar
+-r //remover
+-l //listar
+-S //search
+------------------------------------------------------------
+Comandos de Processos
+
+Em um sistema operacional Linux, um processo e uma instacia em execucao de um programa ou aplicacao.
+PID - identifica o processo
+ps [opcoes]
+-a // mostra todos os Processos
+-u //mostrar somente processos com usuario logado no momento
+-x //mostra apenas os processos executados pelo root
+-f //mostra mais informacoes sobre cada processo (usuario, tempo de inicio)
+-c //mostra o comando usado para iniciar o processo
+-p //mostra o PID dos processos
+kill [-9] pid //encerra um processo especifico kill [opcao] PID
+top //mostra os processos ativos na maquina
+htop //um outro modo de mostrar os processos
+pstree //mostra como estão relacionados os processos
+--------------------------------------------------------------
+
+Comandos FG e BG
+fg [PID] //e usado para trazer um processo em background para o foreground
+bg [PID] //e usado para enviar um processo para background

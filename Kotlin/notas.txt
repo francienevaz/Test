@@ -1,0 +1,7 @@
+_ Para o espelhamento da tela do celular no computador e evitar o uso do emulador do Android Studio é recomendado o uso 
+do  screencopy, para que é possível usar através do uso de um cabo USB ou Wi-Fi.
+_ Basta conectar o smartphone no computador através do cabo USB;
+_ Depois habilite na "Opções de Desenvolvedor" a opção "Depurar via USB";
+_ Depois execute o arquivo na pasta descompactada "open_a_terminal_here.bat";
+_ Depois digite o comando "scrcpy", e pronto! O seu celular está conectado!
+_ No Android Studio vai aparecer o seu smartphone, é dar um play, e o App vai ser instalado no seu celular.

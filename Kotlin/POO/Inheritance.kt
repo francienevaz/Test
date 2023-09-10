@@ -10,13 +10,16 @@ open class Dog {
 }
 
 // pode-se ler que o Yorkshire é do tipo Dog
-class Yorkshire : Dog() {       
+class Yorkshire : Dog() { 
+    
+    // override tem como função sobreescrever a função sayHello()
     override fun sayHello() { 
         println("uau uau!")
     }
 }
 
 fun main() {
+    // dog é do tipo Dog recebe Yorkshire()
     val dog: Dog = Yorkshire()
     dog.sayHello()
 }

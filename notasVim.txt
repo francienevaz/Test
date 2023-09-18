@@ -1,0 +1,46 @@
+no powershell - primeiros comandos com vim
+
+no atalho do powershel press: 
+cd ~ 
+//comando leva para pasta do usuário
+cd Desktop...
+
+vim - para abrir o programa
+:q - para sair do programa
+:q! - para sair de tudo
+ESC - para mudar para o modo de comando
+:w - salvar arquivo
+:wq - salva e sai do vim
+i - para inserir qualquer coisa
+para criar um novo arquivo basta digitar vim o nome do arquivo 
+e extensão, depois salvar usando :w
+quando estiver no modo de comandos dá para andar pelo texto
+x - apaga um caracter
+
+para copiar e colar dentro do vim:
+preciona a tecla shift e seleciona com o mouse o texto 
+que você quer copiar
+para colar, coloque o cursor onde você quer por o texto, e aperte 
+o scroll no mouse
+Outra forma:
+por o curso onde você quer copiar o texto
+pressionar a tecla V e selecionar o texto
+depois aperta a tecla Y
+depois posiciona o cursor onde deseja colar o texto
+e pressiona o scroll no mouse ou aperta a letra P
+
+para apagar um bloco de texto
+aperte o V, vai deixar no modo Visual, então seleciona o texto/bloco
+depois aperta D ou X
+
+u - desfaz a última mudança
+U - desfaz todas as mudanças na ultima linha
+CTRL-R refaz as mudanças desfeitas
+
+selecionar todo o texto no modo normal
+esc
+ggVG
+
+para copiar o texto 
+"*y
+

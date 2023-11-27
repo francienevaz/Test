@@ -1,0 +1,96 @@
+Sistema de Automacao - Empresa BergaWorks
+Administradora financeira
+10 funcionarios (1 gerente; 3 RH; 1 faxineira; outros gestores)
+
+O que o Cliente quer?
+Comando por voz
+Abrir portas
+Deslisgar Equipamentos
+
+---------------------------------------------
+Acesso limitado a sala do gestor e sala de RH
+---------------------------------------------
+
+O ideal para o cliente seria que fosse um servidor local, sem a necessidade de internet, para que o sistema nao seja armezanado em nuvem, por receio do cliente em ser hackeado, e ter dados confidenciais expostos
+
+-----------------------------------------------
+Quantas salas ? 
+A sala da secretaria - hall de entrada
+Tem o RH
+6 gestores - 1 sala para 2 pessoas
+5 a seis sala fora a copa
+----------------------------------------------
+
+Sobre utilizar um sistema como uma Alexa por exemplo para fazer essa automacao? Qual a opiniao da cliente?
+Se o sistema me passar confianca que nenhuma informacao sera vazada, seria uma opcao, mudaria de ideia.
+Resposta do professor:
+quando você compra um sistema desses existem algumas empresas que te vendem esses  o sistema caro mas que o objetivo dessa empresa é ganhar dinheiro te vendendo o aparelho e tem outras empresas que te vendem o sistema mais barato às vezes até o aparelho mais barato mas o objetivo dessa empresa é ganhar dinheiro com os seus dados.
+Quando a gente compra por exemplo um aparelho da Google é com Android por exemplo, e isso a gente inclui todos os androides como por exemplo a Alexa que funciona com Android, iOS,  a própria Alexa é de uma empresa que o objetivo deles não é só vender produtos né a Amazon também ganha dinheiro com venda de informações, mas a Google é mais específica, então se você compra um sistema desses que é fabricado pela Google você já tem que saber que os teus dados serão usados para o lucro desta empresa então o vazamento de dados pode não acontecer, mas o compartilhamento de dados vai acontecer, então a gente precisa tomar muito cuidado quando a gente fala em segurança de informação, os sistemas prontos nesse sentido eles são muito delicados da gente fazer a instalação, então quando a gente vai instalar na nossa casa, é uma situação a gente está instalando em casa, ou está instalando numa empresa que não tem um compromisso tão grande com o vazamento de dados internos da empresa e tal aí é tranquilo, quando a gente fala numa empresa que o principal objetivo da empresa que é o caso aqui,é fazer gestão de dados financeiros dos seus clientes essa informação é muito sensível, então a gente tem que tomar muito cuidado com esse tipo de informação inclusive quando a gente pensa em em soluções de nuvem, essas soluções de nuvem elas precisam ser muito bem avaliadas também, e você precisa ter muita segurança naquilo que você está contratando para ter certeza que vazamentos não vão acontecer, porque imagina a responsabilidade, ela recai sobre nós, nós é que estamos criando um serviço apesar do analista de sistemas não necessariamente ter uma responsabilidade técnica legal como por exemplo o engenheiro teria, ainda assim a empresa pode nos culpar pelo vazamento de dados.
+
+----------------------------------------------
+Principais Urgencias
+
+Automacao da porta para ajudar a funcionaria pcd, por voz;
+
+Segurança - às vezes fica dinheiro nas salas, houve um episódio recente que entraram nas salas e saquearam algumas salas do condomínio. A Cliente presa por sua segurança e dos outros funcionarios, no horario comercial que é quando eles estão no escritório.
+
+Predio comercial - horario comercial
+
+----------------------------------------------
+Funcionaria pcd terá acesso a todas as salas no escritório
+automação no acendimento das luzes será por voz
+ar condicionado será incluso na automação, e se possível programar uma funcionalidade que permita que o mesmo tenha uma flexibidade com relação a temperatura, ou seja, quando chegar a uma determinada temperatura, o ar condicionado desligue para economia de energia.
+
+---------------------------------------------- 
+São seis máquinas de ar condicionado - 9000BTUS
+um hardware para controlar as 6 máquinas - um processador de 8bits
+----------------------------------------------
+
+Formas de acesso (ex.: por cartão)
+Cliente sugeriu o celular
+celular é um risco, pois o funcionario pode perder ou ser roubado
+mas em contrapartida é possível usar o mesmo sistema de aproximação que usamos no cartão de crédito por exemplo, o usuário digita a senha e aproxima o cartão para efetuar o pagamento. No caso do celular, o mesmo seria identificado como um cartão de acesso por aproximação. A questão depois seria trabalhar no hardware de cada funcionário
+
+----------------------------------------------
+
+O sistema precisa fazer a identificação da funcionária, reconhecer a voz dela, os demais não podem ter o mesmo acesso que ela.
+----------------------------------------------
+
+Sensor de identificação por cameras
+
+----------------------------------------------
+
+margem de custo
+
+estimativa: 25000 +- já inclusos os equipamentois necessários e mão de obra
+
+----------------------------------------------
+Há necessidade de contratar uma empresa para cuidar da manutenção...
+no primeiro momento, levando em consideração que se trata de uma startup no inicio de vida, seria um gasto desnecessário, pois não está dentro do corebusiness da empresa.
+não existe a necessidade de um profissional de TI no dia a dia da empresa. O interessante então é chamar um técnico pontualmente, quando for realmente necessário.
+Ou contratar uma empresa que seja seguradora, que te atenda por demanda.
+----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
